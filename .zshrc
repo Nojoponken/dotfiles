@@ -54,6 +54,8 @@ alias ls="ls -aF --color=auto"
 alias diff="diff --color=always"
 alias cd="z"
 alias c="clear&&"
+alias nf="neofetch"
+alias ff="fastfetch"
 
 alias play="./game --lobby-ip elekrisk.com"
 alias moba="cd ~/Spel/moba"
