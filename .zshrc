@@ -51,6 +51,7 @@ zgen load zsh-users/zsh-autosuggestions
 # Aliases
 alias ll="ls -alF --color=auto"
 alias ls="ls -aF --color=auto"
+alias diff="diff --color=always"
 alias cd="z"
 
 alias play="./game --lobby-ip elekrisk.com"

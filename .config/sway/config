@@ -1,11 +1,3 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-
-### Variables
-#
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -18,49 +10,21 @@ set $term kitty
 # Your preferred application launcher
 set $menu wmenu-run
 
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-# output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#
-# Example configuration:
-#
+### Wallpaper:
+output * background ~/Images/rocks.png stretch
+
+### Monitor:
+output DP-2 resolution 2560x1440 position 0,0
+output DP-1 resolution 2560x1440 position 2560,0
 output HDMI-A-3 resolution 2560x1440 scale 1.5
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
 
-### Idle configuration
-#
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-
-### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
+### Keyboard:
 input * {
-    xkb_layout "se"
-	}
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
+    xkb_layout "se(nodeadkeys)"
+}
 
-### Key bindings
-#
+### Key bindings:
+# 
 # Basics:
 #
     # Start a terminal
@@ -213,19 +177,28 @@ bindsym $mod+r mode "resize"
 #
 # Status Bar:
 #
-# Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    status_command i3blocks
+    tray_output none
 
     colors {
         statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        background #232a2d
+        focused_workspace #537544 #6aad5e #ffffff
+        inactive_workspace #2d3437 #2d3437 #bdc3c2
     }
 }
+# class        border  backgr. text    indictr child_border
+client.focused #537544 #6aad5e #ffffff #6aad5e #537544 
+client.unfocused #3d4447 #1d2427 #bdc3c2 #1d2427 #3d4447
+
+default_border pixel 
+
+font pango:JetBrainsMono Nerd Font 10
+
 
 include @sysconfdir@/sway/config.d/
