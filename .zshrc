@@ -1,5 +1,5 @@
-chmod +x /home/noali443/.scripts/*
-export PATH=$PATH:/home/noali443/.scripts
+chmod +x /home/$USER/.scripts/*
+export PATH=$PATH:/home/$USER/.scripts
 
 # ~/.zshrc
 

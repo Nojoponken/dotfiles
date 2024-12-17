@@ -11,7 +11,7 @@ set $term wezterm
 set $menu wmenu-run
 
 ### Wallpaper:
-output * background ~/Images/rocks.png stretch
+output * background ~/Images/wall.jpg stretch
 
 ### Monitor:
 output DP-2 resolution 2560x1440 position 0,0
