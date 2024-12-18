@@ -21,6 +21,8 @@ output HDMI-A-3 resolution 2560x1440 scale 1.5
 ### Keyboard:
 input * {
     xkb_layout "se(nodeadkeys)"
+    # xkb_layout "us"
+    # xkb_options "compose:ralt"
 }
 
 ### Key bindings:
