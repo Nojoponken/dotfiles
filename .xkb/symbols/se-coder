@@ -2,21 +2,21 @@ partial alphanumeric_keys
 xkb_symbols "coder"
 {
 	name[Group1] = "Swedish (Coder)";
-	include "se(nodeadkeys)"
+	include "se(basic)"
 	key <AB01> { [       NoSymbol,       NoSymbol,           plus                 ] }; //   + 
 	key <AB02> { [       NoSymbol,       NoSymbol,          minus                 ] }; //   - 
 	key <AB03> { [       NoSymbol,       NoSymbol,       asterisk                 ] }; //   * 
 	key <AB04> { [       NoSymbol,       NoSymbol,          slash                 ] }; //   / 
 	key <AB05> { [       NoSymbol,       NoSymbol,     asciitilde                 ] }; //   ~ 
-	key <AB06> { [       NoSymbol,       NoSymbol,       NoSymbol,           0    ] }; //   0 
-	key <AB07> { [       NoSymbol,       NoSymbol,       NoSymbol,           1    ] }; //   1 
+	key <AB06> { [       NoSymbol,       NoSymbol,          grave,           0    ] }; //   0 
+	key <AB07> { [       NoSymbol,       NoSymbol,          acute,           1    ] }; //   1 
 	key <AB08> { [       NoSymbol,       NoSymbol,       NoSymbol,           2    ] }; //   2 
 	key <AB09> { [       NoSymbol,       NoSymbol,       NoSymbol,           3    ] }; //   3 
 	key <AC01> { [       NoSymbol,       NoSymbol,     quoteright                 ] }; //   ' 
 	key <AC02> { [       NoSymbol,       NoSymbol,             at                 ] }; //   @ 
 	key <AC03> { [       NoSymbol,       NoSymbol,       sterling                 ] }; //   £ 
 	key <AC04> { [       NoSymbol,       NoSymbol,         dollar                 ] }; //   $ 
-	key <AC05> { [       NoSymbol,       NoSymbol,dead_circumflex                 ] }; //   ^ 
+	key <AC05> { [       NoSymbol,       NoSymbol,    asciicircum                 ] }; //   ^ 
 	key <AC06> { [       NoSymbol,       NoSymbol,      ampersand                 ] }; //   & 
 	key <AC07> { [       NoSymbol,       NoSymbol,      braceleft,           4    ] }; //   { 
 	key <AC08> { [       NoSymbol,       NoSymbol,    bracketleft,           5    ] }; //   [ 
