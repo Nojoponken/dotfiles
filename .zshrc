@@ -54,6 +54,7 @@ alias ls="ls -aF --color=auto"
 alias diff="diff --color=always"
 alias cd="z"
 alias c="clear&&"
+alias cb='xargs echo -n | wl-copy'
 alias nf="neofetch"
 alias ff="fastfetch"
 
