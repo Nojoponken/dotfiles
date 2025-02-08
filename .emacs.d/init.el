@@ -7,9 +7,48 @@
 
 (load-theme 'spacemacs-light :no-confirm)
 
+(require 'god-mode)
+(god-mode)
+
+(define-key god-local-mode-map (kbd "i") #'god-local-mode)
+(global-set-key (kbd "<escape>") #'(lambda () (interactive) (god-local-mode 1)))
+(define-key god-local-mode-map (kbd ".") #'repeat)
+(setq god-exempt-major-modes nil)
+(setq god-exempt-predicates nil)
+
+;;(custom-set-faces
+;; '(god-mode-lighter ((t (:inherit error)))))
+
+(defun my-god-mode-update-mode-line ()
+  (cond
+   (god-local-mode
+    (set-face-attribute 'mode-line nil
+                        :foreground "#604000"
+                        :background "#fff29a")
+    (set-face-attribute 'mode-line-inactive nil
+                        :foreground "#3f3000"
+                        :background "#fff3da"))
+   (t
+    (set-face-attribute 'mode-line nil
+			:foreground "#0a0a0a"
+			:background "#d7d7d7")
+    (set-face-attribute 'mode-line-inactive nil
+			:foreground "#404148"
+			:background "#efefef"))))
+
+(add-hook 'post-command-hook #'my-god-mode-update-mode-line)
+
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
+
+;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
+(custom-set-variables
+  '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
+  '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
+
+;; create the autosave dir if necessary, since emacs won't.
+(make-directory "~/.emacs.d/autosaves/" t)
 
 (defun my-render-org-table-at-point ()
   (interactive)
@@ -59,6 +98,7 @@
 
 (global-set-key (kbd "C-c t") 'my-render-org-table-at-point)
 
+;; Below is styling for org-mode
 (setq org-hide-emphasis-markers t)
 
 (font-lock-add-keywords 'org-mode
@@ -69,6 +109,7 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
+(setq org-roam-directory (file-truename "~/Org/Roam"))
 
 (let* ((variable-tuple
         (cond ((x-list-fonts "ETBembo")         '(:font "ETBembo"))
@@ -98,7 +139,6 @@
  '(variable-pitch ((t (:family "FreeSerif" :height 180))))
  '(fixed-pitch ((t ( :family "Fira Code Retina" :height 160)))))
 
-
 (add-hook 'org-mode-hook 'variable-pitch-mode)
 (add-hook 'org-mode-hook 'visual-line-mode)
 
@@ -126,12 +166,13 @@
  '(custom-enabled-themes '(spacemacs-light))
  '(custom-safe-themes
    '("bbb13492a15c3258f29c21d251da1e62f1abb8bbd492386a673dcfab474186af" default))
- '(package-selected-packages '(spacemacs-theme org-bullets)))
+ '(package-selected-packages '(org-roam god-mode devil spacemacs-theme org-bullets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:family "FreeSerif" :height 180))))
  '(fixed-pitch ((t (:family "Fira Code Retina" :height 160))))
  '(org-block ((t (:inherit fixed-pitch))))
  '(org-code ((t (:inherit (shadow fixed-pitch)))))
