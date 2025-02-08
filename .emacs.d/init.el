@@ -5,42 +5,8 @@
 ;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
-(load-theme 'spacemacs-light :no-confirm)
 
-(require 'god-mode)
-(god-mode)
-
-(define-key god-local-mode-map (kbd "i") #'god-local-mode)
-(global-set-key (kbd "<escape>") #'(lambda () (interactive) (god-local-mode 1)))
-(define-key god-local-mode-map (kbd ".") #'repeat)
-(setq god-exempt-major-modes nil)
-(setq god-exempt-predicates nil)
-
-;;(custom-set-faces
-;; '(god-mode-lighter ((t (:inherit error)))))
-
-(defun my-god-mode-update-mode-line ()
-  (cond
-   (god-local-mode
-    (set-face-attribute 'mode-line nil
-                        :foreground "#604000"
-                        :background "#fff29a")
-    (set-face-attribute 'mode-line-inactive nil
-                        :foreground "#3f3000"
-                        :background "#fff3da"))
-   (t
-    (set-face-attribute 'mode-line nil
-			:foreground "#0a0a0a"
-			:background "#d7d7d7")
-    (set-face-attribute 'mode-line-inactive nil
-			:foreground "#404148"
-			:background "#efefef"))))
-
-(add-hook 'post-command-hook #'my-god-mode-update-mode-line)
-
-(tool-bar-mode 0)
-(menu-bar-mode 0)
-(scroll-bar-mode 0)
+(global-devil-mode 1)
 
 ;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
 (custom-set-variables
@@ -110,34 +76,52 @@
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (setq org-roam-directory (file-truename "~/Org/Roam"))
+(org-roam-db-autosync-mode 1)
+(global-set-key (kbd "C-c r") 'org-roam-node-find)
 
-(let* ((variable-tuple
-        (cond ((x-list-fonts "ETBembo")         '(:font "ETBembo"))
-              ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
-              ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
-              ((x-list-fonts "Verdana")         '(:font "Verdana"))
-              ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
-              (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
-       (base-font-color     (face-foreground 'default nil 'default))
-       (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
+(defun my-setup-gui ()
+  (load-theme 'spacemacs-light :no-confirm)
+  (tool-bar-mode 0)
+  (menu-bar-mode 0)
+  (scroll-bar-mode 0)
 
   (custom-theme-set-faces
    'user
-   `(org-level-8 ((t (,@headline ,@variable-tuple))))
-   `(org-level-7 ((t (,@headline ,@variable-tuple))))
-   `(org-level-6 ((t (,@headline ,@variable-tuple))))
-   `(org-level-5 ((t (,@headline ,@variable-tuple))))
-   `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
-   `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
-   `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
-   `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
-   `(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))))
+   '(default ((t (:family "FreeSerif" :height 180))))
+   '(variable-pitch ((t (:family "FreeSerif" :height 180))))
+   '(fixed-pitch ((t ( :family "Fira Code Retina" :height 160))))))
 
-(custom-theme-set-faces
- 'user
- '(default ((t (:family "FreeSerif" :height 180))))
- '(variable-pitch ((t (:family "FreeSerif" :height 180))))
- '(fixed-pitch ((t ( :family "Fira Code Retina" :height 160)))))
+
+(defun my-set-org-fonts () 
+  (let* ((variable-tuple
+          (cond ((x-list-fonts "ETBembo")         '(:font "ETBembo"))
+		((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
+		((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
+		((x-list-fonts "Verdana")         '(:font "Verdana"))
+		((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
+		(nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
+	 (base-font-color     (face-foreground 'default nil 'default))
+	 (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
+
+    (custom-theme-set-faces
+     'user
+     `(org-level-8 ((t (,@headline ,@variable-tuple))))
+     `(org-level-7 ((t (,@headline ,@variable-tuple))))
+     `(org-level-6 ((t (,@headline ,@variable-tuple))))
+     `(org-level-5 ((t (,@headline ,@variable-tuple))))
+     `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
+     `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
+     `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
+     `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
+     `(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil)))))))
+
+(add-hook 'after-make-frame-functions
+	  (lambda (frame)
+	    (with-selected-frame frame
+	      (when (display-graphic-p)
+		(my-set-org-fonts)
+		(my-setup-gui)))))
+
 
 (add-hook 'org-mode-hook 'variable-pitch-mode)
 (add-hook 'org-mode-hook 'visual-line-mode)
