@@ -6,7 +6,7 @@ color=71baf2
 
 [public-ip]
 command=ip a | grep -oP "(?<=inet )[\d+\.]+(?=.*enp)"
-interval=once
+interval=15
 color=f4d67a
 
 # [battery]
