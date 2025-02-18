@@ -21,8 +21,14 @@
 
 ;;; Theme
 (use-package spacemacs-theme
+  :ensure t
   :defer t
   :init (load-theme 'spacemacs-light :no-confirm))
+
+
+;;; Magit
+(use-package magit
+  :ensure t)
 
 ;;; Dired
 ;; Change the 'c' binding since it's easier than pressing 'C-x C-f' and fulfills the same purpose.
@@ -81,7 +87,17 @@
     ("M-s M-s" . consult-outline)
     :map consult-narrow-map
     ("?" . consult-narrow-help)))
-  
+
+;;; Orderless
+(use-package orderless
+  :ensure t
+  :config
+  (setq completion-styles '(orderless basic)))
+
+;;; Org
+
+;;; Org-Roam
+
 
 ;;; Custom set variable
 (custom-set-variables
@@ -89,7 +105,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(consult marginalia vertico spacemacs-theme)))
+ '(package-selected-packages
+   '(magit orderless consult marginalia vertico spacemacs-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
