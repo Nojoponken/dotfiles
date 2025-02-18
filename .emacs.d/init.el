@@ -30,6 +30,26 @@
 (setq leaf-defaults '(:ensure t :require t))
 
 
+;;; Basic configuration
+;;;; Dired and C-x C-f
+;; Change the 'c' binding since it's easier than pressing 'C-x C-f' and fulfills the same purpose.
+(eval-after-load 'dired
+  '(progn
+     (define-key dired-mode-map (kbd "c") 'find-file)))
+(setq vc-follow-symlinks t)
+
+;;;; Outshine
+(leaf outshine
+  :doc "Replacement for `outline-minor-mode'"
+  :url "https://github.com/alphapapa/outshine/"
+  :config (add-hook 'emacs-lisp-mode-hook 'outshine-mode))
+
+;;;; Magit
+(leaf magit
+  :doc "I'll always use magit though!"
+  :url "https://magit.vc"
+  :bind ("C-c g" . magit))
+
 ;;; Visual configuration
 ;;;; Line numbers
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
@@ -49,24 +69,6 @@
   :url "https://github.com/nashamri/spacemacs-theme"
   :config (load-theme 'spacemacs-light :no-confirm))
 
-
-;;; Magit
-(leaf magit
-  :doc "I'll always use magit though!"
-  :url "https://magit.vc")
-
-;;; Dired and C-x C-f
-;; Change the 'c' binding since it's easier than pressing 'C-x C-f' and fulfills the same purpose.
-(eval-after-load 'dired
-  '(progn
-     (define-key dired-mode-map (kbd "c") 'find-file)))
-(setq vc-follow-symlinks t)
-
-;;; Outshine
-(leaf outshine
-  :doc "Replacement for `outline-minor-mode'"
-  :url "https://github.com/alphapapa/outshine/"
-  :config (add-hook 'emacs-lisp-mode-hook 'outshine-mode))
 
 ;;; Minibuffer
 ;;;; Vertico
@@ -115,6 +117,7 @@
   (setq completion-styles '(orderless basic)))
 
 ;;; Markdown
+;; I mostly put this here since it is apparently a prerequisite for lsp-bridge
 (leaf markdown-mode)
 
 ;;; Org
@@ -175,4 +178,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "#fbf8ef" :foreground "#655370" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 160 :width normal :foundry "ADBO" :family "FreeSerif")))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "#fbf8ef" :foreground "#655370" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 160 :width normal :foundry "ADBO" :family "FreeSerif"))))
+ '(fixed-pitch ((t (:family "FiraCode Nerd Font")))))
