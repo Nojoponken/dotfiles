@@ -131,11 +131,13 @@
 ;;;; Bullets
 (leaf org-bullets
   :doc "Give `org-mode' headers stylish bulletpoints."
+  :url "https://github.com/sabof/org-bullets"
   :hook (org-mode . org-bullets-mode))
 
 ;;;; Roam
 (leaf org-roam
   :doc "Second brain for `org-mode'."
+  :url "https://www.orgroam.com"
   :config
   (setq org-roam-directory (file-truename "~/Org/Roam"))
   (org-roam-db-autosync-mode 1))
@@ -168,18 +170,32 @@
   :mode ("\\.py\\'" . python-mode))
 
 ;;;; Elixir
+;; To install the elixir-ts-grammar since I had trouble using only treesit
 (leaf treesit-auto
   :doc "Automatic ts grammar installations."
   :url "https://github.com/renzmann/treesit-auto"
   :config
   (global-treesit-auto-mode))
 
+;; Treesitter elixir mode
 (leaf elixir-ts-mode
   :doc "Elixir development environment."
   :url "https://github.com/wkirschbaum/elixir-ts-mode"
-;;  :config (setq lsp-bridge-elixir-lsp-server "elixir-ls")
   :mode (("\\.exs\\'" . elixir-ts-mode)
 	 ("\\.ex\\'" . elixir-ts-mode)))
+
+;;;; Flutter
+;; Assuming usage with dart-mode
+(leaf dart-mode
+  :doc "Portable UI language."
+  :url "https://dart.dev"
+  ;; Optional
+  :hook (dart-mode . flutter-test-mode))
+
+(leaf flutter
+  :doc "GUI app framework."
+  :url "https://flutter.dev"
+  :after dart-mode)
 
 ;;; Custom set variable
 (custom-set-variables
