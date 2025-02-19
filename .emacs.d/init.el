@@ -40,9 +40,16 @@
 
 ;;;; Outshine
 (leaf outshine
-  :doc "Replacement for `outline-minor-mode'"
+  :doc "Replacement for `outline-minor-mode'."
   :url "https://github.com/alphapapa/outshine/"
-  :config (add-hook 'emacs-lisp-mode-hook 'outshine-mode))
+  :config (add-hook 'emacs-lisp-mode-hook 'outshine-mode)
+  :after outorg)  ; Load after `outorg`
+
+;;;;; Outorg
+;; Dependency for outshine (in emacs 31)
+(leaf outorg
+  :doc "Edit code comments in `org-mode'."
+  :url "https://github.com/alphapapa/outorg")
 
 ;;;; Magit
 (leaf magit
@@ -73,7 +80,7 @@
 ;;; Minibuffer
 ;;;; Vertico
 (leaf vertico
-  :doc "Make the minibuffer vertical and update results continuesly"
+  :doc "Make the minibuffer vertical and update results continuesly."
   :url "https://github.com/minad/vertico"
   :config
   (setq vertico-cycle t)
@@ -83,13 +90,13 @@
 
 ;;;; Marginalia
 (leaf marginalia
-  :doc "Inline documentation in the minibuffer"
+  :doc "Inline documentation in the minibuffer."
   :url "https://github.com/minad/marginalia"
   :config (marginalia-mode t))
-  
+
 ;;;; Consult
 (leaf consult
-  :doc "Search and navigation functions with previews"
+  :doc "Search and navigation functions with previews."
   :url "https://github.com/minad/consult"
   :hook (completion-list-mode . consult-preview-at-point-mode)
   :bind
@@ -111,7 +118,7 @@
 
 ;;;; Orderless
 (leaf orderless
-  :doc "Orderless completions in the minibuffer"
+  :doc "Orderless completions in the minibuffer."
   :url "https://github.com/oantolin/orderless"
   :config
   (setq completion-styles '(orderless basic)))
@@ -123,10 +130,12 @@
 ;;; Org
 ;;;; Bullets
 (leaf org-bullets
+  :doc "Give `org-mode' headers stylish bulletpoints."
   :hook (org-mode . org-bullets-mode))
 
 ;;;; Roam
 (leaf org-roam
+  :doc "Second brain for `org-mode'."
   :config
   (setq org-roam-directory (file-truename "~/Org/Roam"))
   (org-roam-db-autosync-mode 1))
@@ -134,7 +143,7 @@
 ;;; LSP
 ;;;; Yasnippet
 (leaf yasnippet
-  :doc "Template system"
+  :doc "Template system."
   :url "https://github.com/joaotavora/yasnippet"
   :hook   ((after-init-hook . yas-reload-all)
            (prog-mode-hook  . yas-minor-mode))
@@ -142,12 +151,12 @@
 
 ;;;; LSP Bridge
 (leaf lsp-bridge
-  :doc "fast LSP client"
+  :doc "Fast multithreaded LSP client."
   :vc (:url "https://github.com/manateelazycat/lsp-bridge")
   :init (global-lsp-bridge-mode)
   :custom
   (acm-enable-tabnine                 . t)
-  (acm-enable-copilot                 . t)
+  (acm-enable-copilot                 . nil)
   (acm-enable-quick-access            . t)
   (lsp-bridge-enable-hover-diagnostic . t)
   (acm-backend-yas-candidates-number  . 5))
@@ -158,6 +167,20 @@
   :url "https://wiki.python.org/moin/EmacsPythonMode"
   :mode ("\\.py\\'" . python-mode))
 
+;;;; Elixir
+(leaf treesit-auto
+  :doc "Automatic ts grammar installations."
+  :url "https://github.com/renzmann/treesit-auto"
+  :config
+  (global-treesit-auto-mode))
+
+(leaf elixir-ts-mode
+  :doc "Elixir development environment."
+  :url "https://github.com/wkirschbaum/elixir-ts-mode"
+;;  :config (setq lsp-bridge-elixir-lsp-server "elixir-ls")
+  :mode (("\\.exs\\'" . elixir-ts-mode)
+	 ("\\.ex\\'" . elixir-ts-mode)))
+
 ;;; Custom set variable
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -167,8 +190,7 @@
  '(inhibit-startup-echo-area-message t)
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
- '(package-selected-packages
-   '(python lsp-bridge yasnippet org-roam org-bullets markdown-mode orderless consult marginalia vertico magit spacemacs-theme fixed-pitch blackout el-get hydra leaf-keywords leaf))
+ '(package-selected-packages nil)
  '(package-vc-selected-packages
    '((fixed-pitch :url "https://github.com/cstby/fixed-pitch-mode.git")))
  '(scroll-bar-mode nil)
