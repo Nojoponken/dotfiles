@@ -31,6 +31,11 @@
 
 
 ;;; Basic configuration
+;;;; Buffer Move
+(leaf buffer-move
+  :doc "Move buffers around (why do i need a package for this???)."
+  :url "https://www.emacswiki.org/emacs/buffer-move.el")
+
 ;;;; Dired and C-x C-f
 ;; Change the 'c' binding since it's easier than pressing 'C-x C-f' and fulfills the same purpose.
 (eval-after-load 'dired
@@ -58,6 +63,10 @@
   :bind ("C-c g" . magit))
 
 ;;; Visual configuration
+;;;; Unicode
+(set-fontset-font t 'unicode (font-spec :name "FreeSerif") nil)
+(set-fontset-font t 'unicode (font-spec :name "Symbola") nil 'append)
+
 ;;;; Line numbers
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (global-hl-line-mode t)
@@ -128,11 +137,27 @@
 (leaf markdown-mode)
 
 ;;; Org
+(add-hook 'org-mode-hook 'org-indent-mode)
+(setq-default prettify-symbols-alist '(("#+TITLE:" . "🙠")
+				       ("#+AUTHOR:" . "✍")
+				       ("#+OPTIONS:" . "🔧")
+				       ("#+EMAIL:" . "📩")
+				       ("#+LANGUAGE:" . "")))
+(add-hook 'org-mode-hook 'prettify-symbols-mode)
+
 ;;;; Bullets
 (leaf org-bullets
   :doc "Give `org-mode' headers stylish bulletpoints."
   :url "https://github.com/sabof/org-bullets"
-  :hook (org-mode . org-bullets-mode))
+  :config  (add-hook 'org-mode-hook #'org-bullets-mode)
+	   (setq org-bullets-bullet-list '("❡" "✿" "❀" "✤" "𐫱" "➺" "◦" "﹡")))
+  ;; ((org-mode) . org-bullets-mode))
+
+;;;; Superstar
+;; (leaf org-superstar
+;;   :doc "Rewrite descendant of `org-bullets'."
+;;   :url "https://github.com/integral-dw/org-superstar-mode"
+;;   :config (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1))))
 
 ;;;; Roam
 (leaf org-roam
