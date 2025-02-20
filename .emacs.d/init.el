@@ -64,8 +64,11 @@
 
 ;;; Visual configuration
 ;;;; Unicode
-(set-fontset-font t 'unicode (font-spec :name "FreeSerif") nil)
-(set-fontset-font t 'unicode (font-spec :name "Symbola") nil 'append)
+(set-fontset-font t 'symbol (font-spec :name "FreeSerif") nil)
+(set-fontset-font t 'symbol (font-spec :name "Symbola") nil 'append)
+(set-fontset-font t 'symbol (font-spec :name "FiraCode Nerd Font") nil 'append)
+(set-fontset-font t 'manichaean (font-spec :name "Noto Sans Manichaean") nil 'append)
+(set-fontset-font t 'vai (font-spec :name "Noto Sans Vai") nil 'append)
 
 ;;;; Line numbers
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
@@ -150,8 +153,7 @@
   :doc "Give `org-mode' headers stylish bulletpoints."
   :url "https://github.com/sabof/org-bullets"
   :config  (add-hook 'org-mode-hook #'org-bullets-mode)
-	   (setq org-bullets-bullet-list '("❡" "✿" "❀" "✤" "𐫱" "➺" "◦" "﹡")))
-  ;; ((org-mode) . org-bullets-mode))
+	   (setq org-bullets-bullet-list '("❡" "❧" "🙠" "🙛" "𐫱" "𐫱" "𐫱" "𐫱")))
 
 ;;;; Superstar
 ;; (leaf org-superstar
