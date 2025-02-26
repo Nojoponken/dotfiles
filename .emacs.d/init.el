@@ -140,13 +140,19 @@
 (leaf markdown-mode)
 
 ;;; Org
-(add-hook 'org-mode-hook 'org-indent-mode)
+;;;; Basic
+;; (add-hook 'org-mode-hook 'org-indent-mode)
 (setq-default prettify-symbols-alist '(("#+TITLE:" . "🙠")
 				       ("#+AUTHOR:" . "✍")
 				       ("#+OPTIONS:" . "🔧")
 				       ("#+EMAIL:" . "📩")
 				       ("#+LANGUAGE:" . "")))
 (add-hook 'org-mode-hook 'prettify-symbols-mode)
+
+;;;; Olivetti
+(leaf olivetti
+  :config (add-hook 'org-mode-hook 'olivetti-mode)
+  (setq-default olivetti-body-width 100))
 
 ;;;; Bullets
 (leaf org-bullets
@@ -155,20 +161,18 @@
   :config  (add-hook 'org-mode-hook #'org-bullets-mode)
 	   (setq org-bullets-bullet-list '("❡" "❧" "🙠" "🙛" "𐫱" "𐫱" "𐫱" "𐫱")))
 
-;;;; Superstar
-;; (leaf org-superstar
-;;   :doc "Rewrite descendant of `org-bullets'."
-;;   :url "https://github.com/integral-dw/org-superstar-mode"
-;;   :config (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1))))
+;;;; Latex
+(require 'ox-latex)
+(add-to-list 'org-latex-classes
+	     '("sigchi"
+	       " \\documentclass[]{sigchi}"
+	       ("\\section{%s}" . "\\section*{%s}")
+	       ("\\subsection{%s}" . "\\subsection*{%s}")
+	       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+(add-hook 'doc-view-minor-mode-hook 'auto-revert-mode)
+(global-set-key (kbd "C-ö") 'org-latex-export-to-pdf)
 
-;;;; Roam
-(leaf org-roam
-  :doc "Second brain for `org-mode'."
-  :url "https://www.orgroam.com"
-  :config
-  (setq org-roam-directory (file-truename "~/Org/Roam"))
-  (org-roam-db-autosync-mode 1))
-
+   
 ;;; LSP
 ;;;; Yasnippet
 (leaf yasnippet
@@ -183,6 +187,8 @@
   :doc "Fast multithreaded LSP client."
   :vc (:url "https://github.com/manateelazycat/lsp-bridge")
   :init (global-lsp-bridge-mode)
+  :config
+  (keymap-set acm-mode-map "RET" nil)
   :custom
   (acm-enable-tabnine                 . t)
   (acm-enable-copilot                 . nil)
