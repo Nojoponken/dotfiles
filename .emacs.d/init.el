@@ -169,10 +169,22 @@
 	       ("\\section{%s}" . "\\section*{%s}")
 	       ("\\subsection{%s}" . "\\subsection*{%s}")
 	       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
-(add-hook 'doc-view-minor-mode-hook 'auto-revert-mode)
 (global-set-key (kbd "C-ö") 'org-latex-export-to-pdf)
 
    
+;;; PDF
+;;;; Basic
+(add-hook 'pdf-view-mode-hook 'auto-revert-mode)
+ 
+;;;; PDF-tools
+(leaf pdf-tools
+  :doc "Useful tools for inspecting pdf documents."
+  :url "https://github.com/vedang/pdf-tools"
+  :config
+  (pdf-tools-install)
+  (pdf-loader-install))
+
+
 ;;; LSP
 ;;;; Yasnippet
 (leaf yasnippet
@@ -239,7 +251,12 @@
  '(inhibit-startup-echo-area-message t)
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(async blackout buffer-move citeproc consult dart-mode el-get
+	   fixed-pitch flutter hydra insert-kaomoji leaf-keywords
+	   lsp-bridge magit marginalia olivetti orderless org-bullets
+	   org-roam org-superstar outshine spacemacs-theme
+	   treesit-auto vertico yasnippet))
  '(package-vc-selected-packages
    '((fixed-pitch :url "https://github.com/cstby/fixed-pitch-mode.git")))
  '(scroll-bar-mode nil)
