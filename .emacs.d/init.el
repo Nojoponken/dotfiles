@@ -62,6 +62,27 @@
   :url "https://magit.vc"
   :bind ("C-c g" . magit))
 
+;;; Ergoemacs
+(leaf ergoemacs-mode
+  :doc "Ergonomic emacs keybinds."
+  :url "https://ergoemacs.github.io"
+  :init
+  (defvar ergoemacs-layout-se
+  '("" "½" "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" "+" "’" ""
+    "" ""  "w" "l" "y" "p" "k" "z" "x" "o" "u" "ö" "å" "\"" ""
+    "" ""  "c" "r" "s" "t" "b" "f" "n" "e" "i" "a" "ä" "'" ""
+    "" "q"  "j" "v" "d" "g" "<" "m" "h" "," "." "-" "" "" ""
+    ;; Shifted
+    "" "§" "!" "@" "#" "¤" "%" "&" "/" "(" ")" "=" "?" "`" ""
+    "" ""  "W" "L" "Y" "P" "K" "Z" "X" "O" "U" "Ö" "Å" "^" ""
+    "" ""  "C" "R" "S" "T" "B" "F" "N" "E" "I" "A" "Ä" "*" ""
+    "" "Q"  "J" "V" "D" "G" ">" "M" "H" ";" ":" "_" "" "" "")
+  "Swedish Canary layout.")
+  :config
+  (setq ergoemacs-theme nil) ;; Uses Standard Ergoemacs keyboard theme
+  (setq ergoemacs-keyboard-layout "se") ;; Assumes QWERTY keyboard layout
+  (ergoemacs-mode 1))
+
 ;;; Visual configuration
 ;;;; Unicode
 (set-fontset-font t 'symbol (font-spec :name "FreeSerif") nil)
