@@ -34,7 +34,7 @@ compinit
 # Prompt
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn
-zstyle ':vcs_info:git*' formats " %F{3}[ %b]"
+zstyle ':vcs_info:git*' formats " %F{3}[ᚴ %b]"
 precmd() {
     vcs_info
 }
@@ -68,6 +68,7 @@ alias ss="~/TDDI41/TDDI41/start_single.sh"
 
 alias locip="ip a | grep -oP '(?<=inet ).*(?=/.*enp1s0)' | cowsay"
 alias locip6="ip a | grep -oP '(?<=inet6 )(::|[0-9a-f]+:)([0-9a-f]*:)*([0-9a-f]+|:)(?=.*global)' | cowsay"
+alias wmoni="swaymsg -t get_outputs | jq  -r '.[] | select(.dpms and .active).name'"
 
 alias up="yay -Syu"
 alias get="yay -S"

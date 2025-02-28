@@ -66,22 +66,10 @@
 (leaf ergoemacs-mode
   :doc "Ergonomic emacs keybinds."
   :url "https://ergoemacs.github.io"
-  :init
-  (defvar ergoemacs-layout-se
-  '("" "½" "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" "+" "’" ""
-    "" ""  "w" "l" "y" "p" "k" "z" "x" "o" "u" "ö" "å" "\"" ""
-    "" ""  "c" "r" "s" "t" "b" "f" "n" "e" "i" "a" "ä" "'" ""
-    "" "q"  "j" "v" "d" "g" "<" "m" "h" "," "." "-" "" "" ""
-    ;; Shifted
-    "" "§" "!" "@" "#" "¤" "%" "&" "/" "(" ")" "=" "?" "`" ""
-    "" ""  "W" "L" "Y" "P" "K" "Z" "X" "O" "U" "Ö" "Å" "^" ""
-    "" ""  "C" "R" "S" "T" "B" "F" "N" "E" "I" "A" "Ä" "*" ""
-    "" "Q"  "J" "V" "D" "G" ">" "M" "H" ";" ":" "_" "" "" "")
-  "Swedish Canary layout.")
   :config
   (setq ergoemacs-theme nil) ;; Uses Standard Ergoemacs keyboard theme
-  (setq ergoemacs-keyboard-layout "se") ;; Assumes QWERTY keyboard layout
-  (ergoemacs-mode 1))
+  (setq ergoemacs-keyboard-layout "sw") ;; Assumes QWERTY keyboard layout
+  (ergoemacs-mode 0))
 
 ;;; Visual configuration
 ;;;; Unicode
@@ -274,10 +262,11 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    '(async blackout buffer-move citeproc consult dart-mode el-get
-	   fixed-pitch flutter hydra insert-kaomoji leaf-keywords
-	   lsp-bridge magit marginalia olivetti orderless org-bullets
-	   org-roam org-superstar outshine spacemacs-theme
-	   treesit-auto vertico yasnippet))
+	   expand-region fireplace fixed-pitch flutter hydra
+	   insert-kaomoji leaf-keywords lsp-bridge magit marginalia
+	   olivetti orderless org-bullets org-roam org-superstar
+	   outshine spacemacs-theme teacode-expand treesit-auto
+	   vertico yasnippet))
  '(package-vc-selected-packages
    '((fixed-pitch :url "https://github.com/cstby/fixed-pitch-mode.git")))
  '(scroll-bar-mode nil)
@@ -289,3 +278,4 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :extend nil :stipple nil :background "#fbf8ef" :foreground "#655370" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 160 :width normal :foundry "ADBO" :family "FreeSerif"))))
  '(fixed-pitch ((t (:family "FiraCode Nerd Font")))))
+(put 'upcase-region 'disabled nil)
