@@ -62,15 +62,6 @@
   :url "https://magit.vc"
   :bind ("C-c g" . magit))
 
-;;; Ergoemacs
-(leaf ergoemacs-mode
-  :doc "Ergonomic emacs keybinds."
-  :url "https://ergoemacs.github.io"
-  :config
-  (setq ergoemacs-theme nil) ;; Uses Standard Ergoemacs keyboard theme
-  (setq ergoemacs-keyboard-layout "sw") ;; Assumes QWERTY keyboard layout
-  (ergoemacs-mode 0))
-
 ;;; Visual configuration
 ;;;; Unicode
 (set-fontset-font t 'symbol (font-spec :name "FreeSerif") nil)
