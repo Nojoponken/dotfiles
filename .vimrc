@@ -5,6 +5,13 @@ filetype plugin on
 filetype indent on
 syntax on
 
+""" Tabs
+set expandtab
+set autoindent
+set shiftwidth=4
+set softtabstop=4
+set tabstop=8
+
 "" Line numbers
 set number
 set relativenumber
