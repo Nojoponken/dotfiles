@@ -7,22 +7,23 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term kitty
+set $term alacritty
 # Your preferred application launcher
 set $menu wmenu-run
 
 ### Wallpaper:
-output * background ~/Images/mountain.jpg stretch
+output * background ~/Images/wall.png stretch
 
 ### Monitor
-output DP-2 resolution 2560x1440 position 0,0
-output DP-1 resolution 2560x1440 position 2560,0
-output HDMI-A-3 resolution 2560x1440 scale 1.5
+# output DP-2 resolution 2560x1440 position 0 0
+output DP-1 resolution 2560x1440 position 2560 0
+output HDMI-A-2 resolution 2560x1440 position 0 0
+# output HDMI-A-3 resolution 2560x1440 scale 1.5
 
 ### Keyboard:
 input * {
-    xkb_layout se-coder,se-canary
-    xkb_options ctrl:swapcaps,grp:rctrl_toggle
+      xkb_layout "se-coder"
+      xkb_options ctrl:nocaps
 }
 
 ### Key bindings:
@@ -204,7 +205,19 @@ bar {
         focused_workspace #537544 #6aad5e #ffffff
         inactive_workspace #2d3437 #2d3437 #bdc3c2
     }
+
+  # No Mouse
+
+  bindsym button1 nop
+  bindsym button2 nop
+  bindsym button3 nop
+  bindsym button4 nop
+  bindsym button5 nop
+  bindsym button6 nop
+  bindsym button7 nop
 }
+
+
 # class        border  backgr. text    indictr child_border
 client.focused #537544 #6aad5e #ffffff #6aad5e #537544 
 client.unfocused #3d4447 #1d2427 #bdc3c2 #1d2427 #3d4447

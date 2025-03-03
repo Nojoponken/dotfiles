@@ -34,7 +34,7 @@ compinit
 # Prompt
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn
-zstyle ':vcs_info:git*' formats " %F{3}[ᚴ %b]"
+zstyle ':vcs_info:git*' formats " %F{3}[ %b]"
 precmd() {
     vcs_info
 }
@@ -61,7 +61,6 @@ alias ff="fastfetch"
 alias play="./game --lobby-ip elekrisk.com"
 alias moba="cd ~/Spel/moba"
 alias hx="helix"
-alias vim="nvim"
 
 alias sp="~/TDDI41/TDDI41/start_project.sh"
 alias ss="~/TDDI41/TDDI41/start_single.sh"
