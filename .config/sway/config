@@ -15,8 +15,8 @@ set $menu wmenu-run
 output * background ~/Images/wall.png stretch
 
 ### Monitor
-output DP-2 resolution 2560x1440 position 0 0
-output DP-1 resolution 2560x1440 position 2560 0
+output DP-1 resolution 2560x1440 position 0 0
+output DP-2 resolution 2560x1440 position 2560 0
 output HDMI-A-2 resolution 2560x1440 position 0 0
 # output HDMI-A-3 resolution 2560x1440 scale 1.5
 
