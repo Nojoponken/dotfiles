@@ -1,10 +1,11 @@
 " Welcome to my Vim config!
 
-let g:netrw_liststyle=3
+" let g:netrw_liststyle=3
+ colorscheme apprentice
 
 "" Syntax
 filetype plugin on
-filetype indent on
+filetype indent off
 syntax on
 
 "" Tabs
@@ -20,6 +21,9 @@ set relativenumber
 
 "" Bindings
 nnoremap <space> :
+nnoremap ä :cn<cr>
+nnoremap ö :cp<cr>
+
 
 "" Fuzzy find files
 set path+=**
@@ -33,8 +37,8 @@ set hlsearch
 command! MakeTags !ctags -R .
 
 "" Dotnet
-set errorformat=\ %#%f(%l\\\,%c):\ %m
-set makeprg=dotnet\ run
+autocmd BufRead *.cs set errorformat=\ %#%f(%l\\\,%c):\ %m
+autocmd BufRead *.cs set makeprg=dotnet\ run
 
 "" Spell
 set spell
