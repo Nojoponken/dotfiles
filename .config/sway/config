@@ -1,4 +1,8 @@
 focus_follows_mouse no
+
+gaps inner 10
+corner_radius 5
+
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -7,7 +11,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term alacritty
+set $term kitty
 # Your preferred application launcher
 set $menu wmenu-run
 
@@ -196,15 +200,15 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command i3blocks
+    swaybar_command waybar
     tray_output none
 
-    colors {
-        statusline #ffffff
-        background #232a2d
-        focused_workspace #537544 #6aad5e #ffffff
-        inactive_workspace #2d3437 #2d3437 #bdc3c2
-    }
+    # colors {
+    #     statusline #ffffff
+    #     background #232a2d
+    #     focused_workspace #537544 #6aad5e #ffffff
+    #     inactive_workspace #2d3437 #2d3437 #bdc3c2
+    # }
 
   # No Mouse
 
@@ -219,8 +223,10 @@ bar {
 
 
 # class        border  backgr. text    indictr child_border
-client.focused #537544 #6aad5e #ffffff #6aad5e #537544 
-client.unfocused #3d4447 #1d2427 #bdc3c2 #1d2427 #3d4447
+# client.focused #537544 #6aad5e #ffffff #6aad5e #537544 
+# client.unfocused #3d4447 #1d2427 #bdc3c2 #1d2427 #3d4447
+client.unfocused #555555 #555555 #ffffff #555555 #555555 
+client.focused #999999 #999999 #999999 #999999 #999999
 
 default_border pixel 
 

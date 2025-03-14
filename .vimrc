@@ -1,7 +1,7 @@
 " Welcome to my Vim config!
 
 " let g:netrw_liststyle=3
- colorscheme apprentice
+colorscheme apprentice
 
 "" Syntax
 filetype plugin on
@@ -21,9 +21,9 @@ set relativenumber
 
 "" Bindings
 nnoremap <space> :
+inoremap <C-c> <esc>
 nnoremap ä :cn<cr>
 nnoremap ö :cp<cr>
-
 
 "" Fuzzy find files
 set path+=**

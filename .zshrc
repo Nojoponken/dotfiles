@@ -80,6 +80,9 @@ alias cbld="cmake . -B build"
 alias bld="cmake --build build"
 alias rn="./build/App"
 
+# Wayfire alias
+alias wayfire="wayfire -c ~/.config/wayfire/wayfire.ini"
+
 # Perl
 PATH="/home/noali443/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/noali443/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
