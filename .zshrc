@@ -1,7 +1,8 @@
+# ~/.zshrc
 chmod +x /home/$USER/.scripts/*
 export PATH=$PATH:/home/$USER/.scripts
-
-# ~/.zshrc
+export CXX=clang++
+export C=clang
 
 # History
 HISTFILE=~/.histfile
@@ -47,7 +48,7 @@ source "${HOME}/.zgen/zgen.zsh"
 zgen load zsh-users/zsh-syntax-highlighting 
 zgen load zsh-users/zsh-completions 
 zgen load zsh-users/zsh-autosuggestions 
-
+ 
 # Aliases
 alias ll="ls -alF --color=auto"
 alias ls="ls -aF --color=auto"
@@ -65,9 +66,29 @@ alias hx="helix"
 alias sp="~/TDDI41/TDDI41/start_project.sh"
 alias ss="~/TDDI41/TDDI41/start_single.sh"
 
-alias locip="ip a | grep -oP '(?<=inet ).*(?=/.*enp1s0)' | cowsay"
-alias locip6="ip a | grep -oP '(?<=inet6 )(::|[0-9a-f]+:)([0-9a-f]*:)*([0-9a-f]+|:)(?=.*global)' | cowsay"
+alias locip="ifconfig wlan0|awk '/inet/{print \$2}'|cowsay"
 alias wmoni="swaymsg -t get_outputs | jq  -r '.[] | select(.dpms and .active).name'"
+alias ib="cowsay Is bloat"
+alias om="clear &&
+            cowsay Two && 
+            sleep 0.1 && clear &&
+            cowsay Two words... && 
+            sleep 1.5 && clear &&
+            cowsay Two words Org &&
+            sleep 0.2 && clear &&
+            cowsay Two words Org mode"
+
+alias aliaunch-deb="qemu-system-x86_64 -m 2048 -hda debian-vm1.qcow2 -vga std -netdev user,id=net0,hostfwd=tcp::2222-:22 -device e1000,netdev=net0 -display sdl"
+
+function launch-ran()
+{
+    qemu-system-x86_64 -m 2048 -hda ~/VMs/ranch-vm$1.qcow2 -vga std -netdev user,id=net0,hostfwd=tcp::222$1-:22 -device e1000,netdev=net0 -display sdl
+}
+
+function launch-deb()
+{
+    qemu-system-x86_64 -m 2048 -hda ~/VMs/deb-vm$1.qcow2 -vga std -netdev user,id=net0,hostfwd=tcp::222$1-:22 -device e1000,netdev=net0 -display sdl
+}
 
 alias up="yay -Syu"
 alias get="yay -S"

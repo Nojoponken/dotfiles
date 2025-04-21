@@ -141,6 +141,7 @@
 
 ;;; Org
 ;;;; Basic
+;;;;; Visual
 ;; (add-hook 'org-mode-hook 'org-indent-mode)
 (setq-default prettify-symbols-alist '(("#+TITLE:" . "🙠")
 				       ("#+AUTHOR:" . "✍")
@@ -148,6 +149,12 @@
 				       ("#+EMAIL:" . "📩")
 				       ("#+LANGUAGE:" . "")))
 (add-hook 'org-mode-hook 'prettify-symbols-mode)
+
+;;;;; Capture
+(setq org-capture-templates
+      '(("d" "dagbok" entry (file "~/PaaS/dagbok.org") "* %T\n%?")))
+
+(global-set-key (kbd "C-c c") 'org-capture)
 
 ;;;; Olivetti
 (leaf olivetti
@@ -252,12 +259,10 @@
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
  '(package-selected-packages
-   '(async blackout buffer-move citeproc consult dart-mode el-get
-	   expand-region fireplace fixed-pitch flutter hydra
-	   insert-kaomoji leaf-keywords lsp-bridge magit marginalia
-	   olivetti orderless org-bullets org-roam org-superstar
-	   outshine spacemacs-theme teacode-expand treesit-auto
-	   vertico yasnippet))
+   '(blackout buffer-move citeproc consult crdt dart-mode el-get
+	      fixed-pitch flutter hydra leaf-keywords lsp-bridge magit
+	      marginalia olivetti orderless org-bullets outshine
+	      pdf-tools spacemacs-theme treesit-auto vertico yasnippet))
  '(package-vc-selected-packages
    '((fixed-pitch :url "https://github.com/cstby/fixed-pitch-mode.git")))
  '(scroll-bar-mode nil)
@@ -268,5 +273,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :extend nil :stipple nil :background "#fbf8ef" :foreground "#655370" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 160 :width normal :foundry "ADBO" :family "FreeSerif"))))
- '(fixed-pitch ((t (:family "FiraCode Nerd Font")))))
+ '(fixed-pitch ((t (:family "FiraCode Nerd Font"))))
+ '(org-checkbox ((t (:inherit bold :family "FreeMono"))))
+ '(org-table ((t (:background "#edf1ed" :foreground "#655370" :family "FreeMono")))))
 (put 'upcase-region 'disabled nil)
