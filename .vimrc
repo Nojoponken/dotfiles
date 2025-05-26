@@ -1,54 +1,65 @@
 " Welcome to my Vim config!
 
-" let g:netrw_liststyle=3
+" Colorscheme
 colorscheme dim
+set tm=1 " Removes lag from escape
 
-"" Line numbers
+packadd! matchit
+runtime! ftplugin/man.vim
+
+" Relative line numbers
 set number
-set relativenumber
+set relativenumber 
+set wildmenu
 
-"" Syntax
-filetype plugin on
-filetype indent off
-au Filetype * setlocal fo-=cro
+" Syntax
+filetype indent plugin on
 syntax on
-set nowrap
-set nottimeout
+autocmd filetype * setlocal fo-=cro
+autocmd filetype org setlocal wrap spell
 
-"" Search
+" Wrap
+set nowrap
+set linebreak
+set smoothscroll
+
+" Search
 set incsearch
 set hlsearch
 
-"" Tabs
+" Tabs
 set expandtab
 set autoindent
 set shiftwidth=4
 set softtabstop=4
 set tabstop=8
 
-"" Bindings
-inoremap <esc> <nop>
-inoremap  
+" Bindings
 nnoremap <space> :
-nnoremap ä :cn<cr>
-nnoremap ö :cp<cr>
+nnoremap <cr> 
+nnoremap <esc>n :cn<cr>
+nnoremap <esc>p :cp<cr>
+nnoremap <esc>o :cope<cr>
+nnoremap <esc>c :ccl<cr>
 
-"" Fuzzy find files
-set path+=**
-set wildmenu
+nnoremap <esc>h [c
+nnoremap <esc>l ]c
+
+command! Diff :vert diffs %:p.diff | silent r # | winc p
+nnoremap <esc>b :bd! #<cr>
+
+" Alt moves line
+nnoremap <esc>k mm:m -2<cr>`m
+nnoremap <esc>j mm:m +1<cr>`m
+vnoremap <esc>k :m '<-2<cr>gv
+vnoremap <esc>j :m '>+1<cr>gv
 
 
-"" Tags command
-command! MakeTags !ctags -R .
-
-"" Dotnet
+" Dotnet
 autocmd BufRead *.cs set errorformat=\ %#%f(%l\\\,%c):\ %m
 autocmd BufRead *.cs set makeprg=dotnet\ run
 
-"" Spell
-set nospell
-
-"" History
+" History
 set viminfo='10,<100,:100,%,n~/.vim/.viminfo
 
 

@@ -1,8 +1,7 @@
 focus_follows_mouse no
-
-# gaps inner 10
+for_window [app_id="float"] floating enable
+gaps inner 10
 # corner_radius 5
-
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -14,6 +13,8 @@ set $right l
 set $term wezterm
 # Your preferred application launcher
 set $menu wmenu-run
+# Your preferred internet browser
+set $internet_browser firefox
 
 ### Wallpaper:
 output * background ~/Images/wall.png stretch
@@ -41,13 +42,17 @@ input * {
     bindsym $mod+Shift+q kill
 
     # Start your launcher
+    bindsym $mod+i exec $internet_browser
+
+    # Start your launcher
     bindsym $mod+d exec $menu
 
     # Start your launcher
-    bindsym $mod+c exec swaylock -c 333333
+    bindsym $mod+c exec swaylock -i ~/Images/graphic-design.png -s stretch
+    # bindsym $mod+c exec swaylock -c 333333
 
     # Start eMacs
-    bindsym $mod+m exec emacsclient -c
+    bindsym $mod+m exec emacs
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -114,9 +119,9 @@ input * {
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 
-    #
-bindsym $mod+Control+Shift+Right move workspace to output right
-bindsym $mod+Control+Shift+Left move workspace to output left
+
+    bindsym $mod+Control+Shift+Right move workspace to output right
+    bindsym $mod+Control+Shift+Left move workspace to output left
 #
 # Layout stuff:
 #
@@ -196,30 +201,33 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 bar {
-    position top
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
     swaybar_command waybar
-    tray_output none
-
-    # colors {
-    #     statusline #ffffff
-    #     background #232a2d
-    #     focused_workspace #537544 #6aad5e #ffffff
-    #     inactive_workspace #2d3437 #2d3437 #bdc3c2
-    # }
-
-  # No Mouse
-
-  bindsym button1 nop
-  bindsym button2 nop
-  bindsym button3 nop
-  bindsym button4 nop
-  bindsym button5 nop
-  bindsym button6 nop
-  bindsym button7 nop
 }
+# bar {
+#     position top
+# 
+#     # When the status_command prints a new line to stdout, swaybar updates.
+#     # The default just shows the current date and time.
+#     swaybar_command waybar
+#     tray_output none
+# 
+#     # colors {
+#     #     statusline #ffffff
+#     #     background #232a2d
+#     #     focused_workspace #537544 #6aad5e #ffffff
+#     #     inactive_workspace #2d3437 #2d3437 #bdc3c2
+#     # }
+# 
+#   # No Mouse
+# 
+#   bindsym button1 nop
+#   bindsym button2 nop
+#   bindsym button3 nop
+#   bindsym button4 nop
+#   bindsym button5 nop
+#   bindsym button6 nop
+#   bindsym button7 nop
+# }
 
 
 # class        border  backgr. text    indictr child_border

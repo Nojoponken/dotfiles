@@ -42,6 +42,8 @@
   '(progn
      (define-key dired-mode-map (kbd "c") 'find-file)))
 (setq vc-follow-symlinks t)
+(global-set-key (kbd "C-x C-f") (lambda()(interactive)(dired default-directory)))
+
 
 ;;;; Outshine
 (leaf outshine

@@ -1,0 +1,15 @@
+((magit-commit nil)
+ (magit-dispatch nil)
+ (magit-log
+  ("-n256" "--graph" "--decorate")
+  ("-n256" "-Gfig" "--graph" "--decorate")
+  ("-n256" "--grep=remove" "--graph" "--decorate")
+  ("-n256" "-Gremove" "--graph" "--decorate"))
+ (magit-log:--grep "remove")
+ (magit-log:-G "fig" "remove")
+ (magit-merge nil)
+ (magit-pull nil)
+ (magit-push nil)
+ (magit-rebase
+  ("--autostash"))
+ (magit-stash nil))

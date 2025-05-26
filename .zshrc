@@ -4,6 +4,8 @@ export PATH=$PATH:/home/$USER/.scripts
 export CXX=clang++
 export C=clang
 
+alias prox="ssh noali443@ssh.edu.liu.se -L 8006:localhost:8006 -L 8007:localhost:8007 -L 8008:localhost:8008 -L 8009:localhost:8009 -L 8010:localhost:8010 -L 8011:localhost:8011"
+
 # History
 HISTFILE=~/.histfile
 HISTSIZE=5000
@@ -49,7 +51,21 @@ zgen load zsh-users/zsh-syntax-highlighting
 zgen load zsh-users/zsh-completions 
 zgen load zsh-users/zsh-autosuggestions 
  
-# Aliases
+# Gif Aliases
+alias slam="viu --height 10 ~/Images/kiryu-desk-slam-kiryu.gif"
+alias hack="viu --height 10 ~/Images/hacker-pepe.gif"
+alias cope="viu --height 10 ~/Images/pepe-copium.gif"
+alias nooo="viu --height 10 ~/Images/noooo.gif"
+alias trol="viu --height 10 ~/Images/troll.gif"
+alias baus="viu --height 10 ~/Images/thebaussffs-baus.gif"
+alias dial="viu --height 10 ~/Images/dialup.gif"
+
+# Normal Aliases
+alias up="yay -Syu"
+alias get="yay -S"
+alias rem="yay -R"
+
+alias kbd="cat ~/se-coder-readme;read"
 alias ll="ls -alF --color=auto"
 alias ls="ls -aF --color=auto"
 alias diff="diff --color=always"
@@ -58,6 +74,10 @@ alias c="clear&&"
 alias cb='xargs echo -n | wl-copy'
 alias nf="neofetch"
 alias ff="fastfetch"
+alias vimr="vim ~/.vimrc"
+alias vimz="vim ~/.zshrc"
+
+alias pts="phoronix-test-suite"
 
 alias play="./game --lobby-ip elekrisk.com"
 alias moba="cd ~/Spel/moba"
@@ -67,8 +87,12 @@ alias sp="~/TDDI41/TDDI41/start_project.sh"
 alias ss="~/TDDI41/TDDI41/start_single.sh"
 
 alias locip="ifconfig wlan0|awk '/inet/{print \$2}'|cowsay"
-alias wmoni="swaymsg -t get_outputs | jq  -r '.[] | select(.dpms and .active).name'"
+alias ncip="c locip && nc -l 8080"
+alias wmoni="swaymsg -t get_outputs | -r '.[] | select(.dpms and .active).name'"
 alias ib="cowsay Is bloat"
+alias kanin="cowsay -f bunny '10 miljoner?'"
+alias truth="cowsay -f kosh You\'ve been fooled if you think Vim is even remotely comparable to Emacs."
+
 alias om="clear &&
             cowsay Two && 
             sleep 0.1 && clear &&
@@ -90,9 +114,11 @@ function launch-deb()
     qemu-system-x86_64 -m 2048 -hda ~/VMs/deb-vm$1.qcow2 -vga std -netdev user,id=net0,hostfwd=tcp::222$1-:22 -device e1000,netdev=net0 -display sdl
 }
 
-alias up="yay -Syu"
-alias get="yay -S"
-alias rem="yay -R"
+function hl()
+{
+    sed -E -e "/$1/s/^/[31m/;s/$/[37m/" -e "/$2/s/^/[34m/"
+}
+
 
 # C/C++ aliases
 alias g++17="g++ -std=c++17 -Wall -Wextra -pedantic -Weffc++ -Wsuggest-attribute=const -fconcepts"
