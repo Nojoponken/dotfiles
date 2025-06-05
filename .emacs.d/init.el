@@ -261,12 +261,14 @@
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
  '(package-selected-packages
-   '(blackout buffer-move citeproc consult crdt dart-mode el-get
+   '(blackout buffer-move consult dart-mode el-get elixir-ts-mode evil
 	      fixed-pitch flutter hydra leaf-keywords lsp-bridge magit
-	      marginalia olivetti orderless org-bullets outshine
-	      pdf-tools spacemacs-theme treesit-auto vertico yasnippet))
+	      marginalia markdown-mode olivetti orderless org-bullets
+	      outorg outshine pdf-tools python spacemacs-theme
+	      treesit-auto vertico yasnippet))
  '(package-vc-selected-packages
-   '((fixed-pitch :url "https://github.com/cstby/fixed-pitch-mode.git")))
+   '((lsp-bridge :url "https://github.com/manateelazycat/lsp-bridge")
+     (fixed-pitch :url "https://github.com/cstby/fixed-pitch-mode.git")))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -274,8 +276,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "#fbf8ef" :foreground "#655370" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 160 :width normal :foundry "ADBO" :family "FreeSerif"))))
- '(fixed-pitch ((t (:family "FiraCode Nerd Font"))))
- '(org-checkbox ((t (:inherit bold :family "FreeMono"))))
- '(org-table ((t (:background "#edf1ed" :foreground "#655370" :family "FreeMono")))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "#ffffff" :foreground "#5f5f87" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 160 :width normal :foundry "UKWN" :family "Free Serif")))))
 (put 'upcase-region 'disabled nil)

@@ -1,0 +1,32 @@
+#!/bin/sh
+# volume script using wpctl for PipeWire
+
+# Get the ID of the default audio sink
+SINK_ID=$(wpctl status | awk '/\*\s.*\s[0-9]+\./ {print $NF; exit}' | sed 's/\.//')
+
+if [ -z "$SINK_ID" ]; then
+    echo "No Sink"
+    exit 0
+fi
+
+# Get volume and mute status
+VOLUME_INFO=$(wpctl get-volume "$SINK_ID")
+
+if echo "$VOLUME_INFO" | grep -q "MUTED"; then
+    echo "MUTED"
+else
+    # Extract volume percentage (e.g., "Volume: 0.50" -> "50%")
+    # The awk command extracts the number, multiplies by 100, and formats it.
+    VOLUME_PERCENT=$(echo "$VOLUME_INFO" | awk '{printf "%.0f%%", $2 * 100}')
+    echo "$VOLUME_PERCENT"
+fi
+
+# Handle click events (optional, but good for interactivity)
+# Left click: Toggle Mute
+# Scroll Up: Volume Up
+# Scroll Down: Volume Down
+case "$BLOCK_BUTTON" in
+    1) wpctl set-mute "$SINK_ID" toggle ;; # Left click
+    4) wpctl set-volume "$SINK_ID" 5%+ ;;  # Scroll Up
+    5) wpctl set-volume "$SINK_ID" 5%- ;;  # Scroll Down
+esac

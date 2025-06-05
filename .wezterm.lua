@@ -3,10 +3,10 @@ local wezterm = require('wezterm')
 local config = wezterm.config_builder()
 
 -- config.color_scheme = 'Solarized Dark (Gogh)'
-config.color_scheme = 'Spacegray Eighties (Gogh)'
+config.color_scheme = 'Atelier Cave (base16)'
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
-config.font = wezterm.font('FiraCode Nerd Font')
+config.font = wezterm.font('FiraMono Nerd Font')
 config.font_size = 20
 config.enable_wayland = true
 config.cursor_blink_rate = 0

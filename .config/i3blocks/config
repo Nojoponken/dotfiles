@@ -1,19 +1,61 @@
+# i3blocks configuration file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also online here:
+# http://vivien.github.io/i3blocks
 
-[network]
-command=nmcli | grep -Po "(?<=to )\w+" | head -n 1
-interval=15
-color=71baf2
 
-[public-ip]
-command=ip a | grep -oP "(?<=inet )[\d+\.]+(?=.*enp)"
-interval=15
-color=f4d67a
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+command=/usr/share/i3blocks/$BLOCK_NAME
+separator_block_width=15
+markup=pango
 
-# [battery]
-# command=((cat /sys/class/power_supply/BAT0/capacity | xargs printf "%s%% " ) && (cat /sys/class/power_supply/BAT0/status | grep C.*)) | xargs echo 
-# interval=15
-# color=88ee88
+[memory]
+color=#88ffbb
+instance=mem
+command=free -h | awk '/^Mem:/ {print $3 "/" $2}'
+interval=10
+#separator=false
+
+[disk]
+#instance=/mnt/data
+color=#ff88bb
+command=df -h / | awk '/\// {print $4 " free"}'
+interval=30
+
+[cpu_usage]
+color=#bbff88
+command=~/.config/i3blocks/scripts/cpu_usage  # Path to your script
+interval=5
+#min_width=CPU: 100.00%
+
+[volume]
+instance=Master
+command=~/.config/i3blocks/scripts/volume # Path to your script
+interval=once
+signal=10
+
+[wifi]
+instance=enp1s0 # Or your wireless network interface
+command=iwgetid -r
+interval=5
+#separator=false
+
+[ethernet]
+instance=enp3s0 # Or your ethernet network interface
+command=ip addr show dev enp3s0 | grep "inet " | awk '{print $2}' | cut -d/ -f1
+interval=5
+#separator=false
+
+[time]
+color=#88bbff
+command=date '+%H:%M:%S'
+interval=1
 
 [date]
-command=date +"%A %F %T"
-interval=1
+color=#ffbb88
+command=date '+%Y-%m-%d'
+interval=60

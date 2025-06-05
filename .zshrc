@@ -1,3 +1,9 @@
+function show_colour() {
+    perl -e 'foreach $a(@ARGV){print "\e[48:2::".join(":",unpack("C*",pack("H*",$a)))."m \e[49m "};print "\n"' "$@"
+}
+
+alias nojotheme="show_colour '111111' 'bb4466' '66bb44' 'bb6644' '4466bb' '6644bb' '44bb66' '333333' && show_colour '888888' 'ff88bb' 'bbff88' 'ffbb88' '88bbff' 'bb88ff' '88ffbb' 'cccccc'"
+
 # ~/.zshrc
 chmod +x /home/$USER/.scripts/*
 export PATH=$PATH:/home/$USER/.scripts
@@ -86,7 +92,7 @@ alias hx="helix"
 alias sp="~/TDDI41/TDDI41/start_project.sh"
 alias ss="~/TDDI41/TDDI41/start_single.sh"
 
-alias locip="ifconfig wlan0|awk '/inet/{print \$2}'|cowsay"
+alias locip="ip a |awk '/inet.*enp1s0/{print \$2}'|cowsay"
 alias ncip="c locip && nc -l 8080"
 alias wmoni="swaymsg -t get_outputs | -r '.[] | select(.dpms and .active).name'"
 alias ib="cowsay Is bloat"
@@ -119,6 +125,13 @@ function hl()
     sed -E -e "/$1/s/^/[31m/;s/$/[37m/" -e "/$2/s/^/[34m/"
 }
 
+function ytvlc()
+{
+    yt-dlp -f bestvideo -g "ytsearch:$1" | read VIDEO_URL &
+    yt-dlp -f bestaudio -g "ytsearch:$1" | read AUDIO_URL &
+    wait
+    cvlc "$VIDEO_URL" --input-slave="$AUDIO_URL"
+}
 
 # C/C++ aliases
 alias g++17="g++ -std=c++17 -Wall -Wextra -pedantic -Weffc++ -Wsuggest-attribute=const -fconcepts"

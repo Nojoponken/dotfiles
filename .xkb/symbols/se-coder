@@ -35,7 +35,7 @@ xkb_symbols "coder"
 	key <AB04> { [       NoSymbol,       NoSymbol,     asciitilde ] }; // v ~ 
 	key <AB05> { [       NoSymbol,       NoSymbol,             mu ] }; // b µ 
 	key <AB06> { [       NoSymbol,       NoSymbol,          grave ] }; // n ` 
-	key <AB07> { [       NoSymbol,       NoSymbol,       question ] }; // m ? 
+	key <AB07> { [       NoSymbol,       NoSymbol,       asterisk ] }; // m * 
 	key <AB08> { [       NoSymbol,       NoSymbol,           less ] }; // , < 
 	key <AB09> { [       NoSymbol,       NoSymbol,        greater ] }; // . > 
 	key <AB10> { [       NoSymbol,       NoSymbol,            bar ] }; // - | 

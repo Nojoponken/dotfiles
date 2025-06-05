@@ -3,13 +3,15 @@
 " Colorscheme
 colorscheme dim
 set tm=1 " Removes lag from escape
+let g:netrw_banner=0
+let g:netrw_liststyle=3
 
 packadd! matchit
 runtime! ftplugin/man.vim
 
 " Relative line numbers
 set number
-set relativenumber 
+" set relativenumber 
 set wildmenu
 
 " Syntax
@@ -17,6 +19,9 @@ filetype indent plugin on
 syntax on
 autocmd filetype * setlocal fo-=cro
 autocmd filetype org setlocal wrap spell
+autocmd filetype org nn k gk
+autocmd filetype org nn j gj
+autocmd filetype netrw nn c :Ntree<cr>
 
 " Wrap
 set nowrap
@@ -35,12 +40,15 @@ set softtabstop=4
 set tabstop=8
 
 " Bindings
+inoremap  
+inoremap  <nop>
 nnoremap <space> :
 nnoremap <cr> 
 nnoremap <esc>n :cn<cr>
 nnoremap <esc>p :cp<cr>
 nnoremap <esc>o :cope<cr>
 nnoremap <esc>c :ccl<cr>
+nnoremap <esc>f :FZF<cr>
 
 nnoremap <esc>h [c
 nnoremap <esc>l ]c
