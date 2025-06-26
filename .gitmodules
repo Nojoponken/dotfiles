@@ -1,0 +1,9 @@
+[submodule ".vim/pack/vimwiki/start/vimwiki"]
+	path = .vim/pack/vimwiki/start/vimwiki
+	url = https://github.com/vimwiki/vimwiki.git
+[submodule ".vim/pack/junegunn/start/fzf"]
+	path = .vim/pack/junegunn/start/fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule ".vim/pack/dense-analysis/start/ale"]
+	path = .vim/pack/dense-analysis/start/ale
+	url = https://github.com/dense-analysis/ale.git
