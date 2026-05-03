@@ -1,14 +1,27 @@
+alias bat=batcat
+
 function show_colour() {
     perl -e 'foreach $a(@ARGV){print "\e[48:2::".join(":",unpack("C*",pack("H*",$a)))."m \e[49m "};print "\n"' "$@"
 }
 
+function music() {
+    mpv --no-video "ytdl://ytsearch:$*"
+}
+
 alias nojotheme="show_colour '111111' 'bb4466' '66bb44' 'bb6644' '4466bb' '6644bb' '44bb66' '333333' && show_colour '888888' 'ff88bb' 'bbff88' 'ffbb88' '88bbff' 'bb88ff' '88ffbb' 'cccccc'"
+alias dcu="sudo docker-compose up -d"
+alias dcd="sudo docker-compose down"
+alias dps="sudo docker ps"
 
 # ~/.zshrc
 chmod +x /home/$USER/.scripts/*
 export PATH=$PATH:/home/$USER/.scripts
-export CXX=clang++
-export C=clang
+# export CXX=clang++
+# export CC=clang
+# export CMAKE_MAKE_PROGRAM=make
+# export CMAKE_C_COMPILER=gcc
+# export CMAKE_CXX_COMPILER=g++
+# export CMAKE_EXPORT_COMPILE_COMMANDS=1
 
 alias prox="ssh noali443@ssh.edu.liu.se -L 8006:localhost:8006 -L 8007:localhost:8007 -L 8008:localhost:8008 -L 8009:localhost:8009 -L 8010:localhost:8010 -L 8011:localhost:8011"
 
@@ -33,7 +46,7 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 zstyle :compinstall filename '/home/noali443/.zshrc'
@@ -75,7 +88,6 @@ alias kbd="cat ~/se-coder-readme;read"
 alias ll="ls -alF --color=auto"
 alias ls="ls -aF --color=auto"
 alias diff="diff --color=always"
-alias cd="z"
 alias c="clear&&"
 alias cb='xargs echo -n | wl-copy'
 alias nf="neofetch"
@@ -87,7 +99,6 @@ alias pts="phoronix-test-suite"
 
 alias play="./game --lobby-ip elekrisk.com"
 alias moba="cd ~/Spel/moba"
-alias hx="helix"
 
 alias sp="~/TDDI41/TDDI41/start_project.sh"
 alias ss="~/TDDI41/TDDI41/start_single.sh"
@@ -134,7 +145,12 @@ function ytvlc()
 }
 
 # C/C++ aliases
-alias g++17="g++ -std=c++17 -Wall -Wextra -pedantic -Weffc++ -Wsuggest-attribute=const -fconcepts"
+alias g++17="g++ -std=c++17"
+alias w++17="g++ -std=c++17 -pedantic -Wall -Wextra"
+alias e++17="g++ -std=c++17 -pedantic -Wall -Wextra -Werror"
+alias g++20="g++ -std=c++20"
+alias w++20="g++ -std=c++20 -pedantic -Wall -Wextra"
+alias e++20="g++ -std=c++20 -pedantic -Wall -Wextra -Werror"
 
 alias cbld="cmake . -B build"
 alias bld="cmake --build build"
@@ -152,3 +168,17 @@ PERL_MM_OPT="INSTALL_BASE=/home/noali443/perl5"; export PERL_MM_OPT;
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# bun completions
+[ -s "/home/noah/.bun/_bun" ] && source "/home/noah/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Created by `pipx` on 2026-02-02 12:16:29
+export PATH="$PATH:/home/noah/.local/bin"

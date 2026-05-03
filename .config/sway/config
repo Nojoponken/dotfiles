@@ -1,3 +1,5 @@
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY
+
 focus_follows_mouse no
 for_window [app_id="float"] floating enable
 # gaps inner 10
@@ -10,15 +12,21 @@ set $left h
 set $down j
 set $up k
 set $right l
+
 # Your preferred terminal emulator
-set $term wezterm
+set $term foot
+
 # Your preferred application launcher
-set $menu wofi
+set $menu i3-dmenu-desktop
+
 # Your preferred internet browser
-set $internet_browser firefox
+set $internet_browser firefox-nightly
+
+# Screenshot utility
+set $screen_grab grim -g "$(slurp)"
 
 ### Wallpaper:
-output * background ~/Pictures/wall.png stretch
+output * background ~/Pictures/Sway_Wallpaper_Blue_1920x1080.png stretch
 
 ### Monitor
 output DP-2 resolution 2560x1440 position 0 0
@@ -30,6 +38,7 @@ output HDMI-A-2 resolution 2560x1440 position 0 0
 input * {
     xkb_layout "se-coder"
     xkb_options ctrl:nocaps
+    natural_scroll enabled
 }
 
 ### Key bindings:
@@ -48,8 +57,11 @@ bindsym $mod+i exec $internet_browser
 # Start your launcher
 bindsym $mod+d exec $menu
 
+# Screenshot
+bindsym $mod+y exec $screen_grab
+
 # Start your launcher
-bindsym $mod+c exec swaylock -i ~/Pictures/wall.png -s stretch
+bindsym $mod+c exec swaylock -c 110011
 # bindsym $mod+c exec swaylock -c 333333
 
 # Start eMacs
@@ -187,11 +199,22 @@ bindsym $mod+r mode "resize"
 #
 # Utilities:
 #
-# Special keys to adjust volume via PulseAudio
-bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+# Special keys to adjust volume
+
+## PulseAudio
+# set $vol_up pactl set-sink-volume \@DEFAULT_SINK@ +5%
+# set $vol_down pactl set-sink-volume \@DEFAULT_SINK@ -5%
+# set $vol_mute pactl set-sink-mute \@DEFAULT_SINK@ toggle
+## PipeWire
+set $vol_up wpctl set-volume @DEFAULT_SINK@ 5%+
+set $vol_down wpctl set-volume @DEFAULT_SINK@ 5%-
+set $vol_mute wpctl set-mute @DEFUALT_SINK@ toggle
+
+bindsym XF86AudioMute exec $vol_mute && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume exec $vol_up && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec $vol_down && pkill -RTMIN+10 i3blocks
+
+# bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
 # Special keys to adjust brightness via brightnessctl
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
@@ -212,7 +235,7 @@ bar {
     swaybar_command swaybar
     status_command i3blocks
 
-    font pango:Fira Mono 14, Noto Sans Symbols 14
+    font pango:Aporetic Serif Mono 14, Noto Sans Symbols 14
     height 26
 # colors {
 #     statusline #ffffff

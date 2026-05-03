@@ -14,48 +14,40 @@ separator_block_width=15
 markup=pango
 
 [memory]
-color=#88ffbb
+#color=#88ffbb
 instance=mem
 command=free -h | awk '/^Mem:/ {print $3 "/" $2}'
 interval=10
 #separator=false
 
+[cpu_usage]
+#color=#ff88bb
+command=mpstat -P ALL | awk '/all/{sub(/,/, ".", $12); print "CPU: " 100.00 - $12 "%"}'
+interval=15
+
 [disk]
 #instance=/mnt/data
-color=#ff88bb
+#color=#bbff88
 command=df -h / | awk '/\// {print $4 " free"}'
 interval=30
 
-[cpu_usage]
-color=#bbff88
-command=~/.config/i3blocks/scripts/cpu_usage  # Path to your script
-interval=5
-#min_width=CPU: 100.00%
-
 [volume]
-instance=Master
-command=~/.config/i3blocks/scripts/volume # Path to your script
+command=wpctl get-volume @DEFAULT_SINK@ | awk '{print "VOL: " $2*100 "%"}'
 interval=once
 signal=10
 
-[wifi]
-instance=enp1s0 # Or your wireless network interface
-command=iwgetid -r
-interval=5
-#separator=false
-
-[ethernet]
-instance=enp3s0 # Or your ethernet network interface
-command=ip addr show dev enp3s0 | grep "inet " | awk '{print $2}' | cut -d/ -f1
-interval=5
-#separator=false
+[battery]
+#color=#ffbb88
+command=upower -i $(upower -e | grep 'BAT') | awk '/percentage/{print "BAT: " $2}'
+interval=30
 
 [time]
-color=#88bbff
+#color=#88bbff
 command=date '+%H:%M:%S'
 interval=1
 
 [date]
-color=#ffbb88
+#color=#bb88ff
 command=date '+%Y-%m-%d'
 interval=60
+

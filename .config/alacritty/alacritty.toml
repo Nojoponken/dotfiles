@@ -1,18 +1,22 @@
+
+[window]
+padding = {x = 10, y = 10}
+
 [font]
 size = 18.0
 
 [font.bold]
-family = "Fira Mono"
+family = "CartographCF"
 style = "Bold"
 
 [font.bold_italic]
-family = "Fira Mono"
+family = "CartographCF"
 style = "Bold Italic"
 
 [font.italic]
-family = "Fira Mono"
+family = "CartographCF"
 style = "Italic"
 
 [font.normal]
-family = "Fira Mono"
+family = "CartographCF"
 style = "Regular"

@@ -1,10 +1,17 @@
 " Welcome to my Vim config!
+set rtp+=/usr/bin/fzf
+
+set fdm=syntax
+set fdl=3
+
+" Lightline
+set laststatus=1
 
 " Colorscheme
 colorscheme dim
 set tm=1 " Removes lag from escape
 let g:netrw_banner=0
-let g:netrw_liststyle=3
+
 
 packadd! matchit
 runtime! ftplugin/man.vim
@@ -18,10 +25,20 @@ set wildmenu
 filetype indent plugin on
 syntax on
 autocmd filetype * setlocal fo-=cro
+
+" Prose
 autocmd filetype org setlocal wrap spell
 autocmd filetype org nn k gk
 autocmd filetype org nn j gj
-autocmd filetype netrw nn c :Ntree<cr>
+autocmd filetype org nn $ g$
+autocmd filetype org nn 0 g0
+
+nnoremap <esc>w :VimwikiIndex<cr>
+autocmd filetype vimwiki setlocal wrap spell
+autocmd filetype vimwiki nn k gk
+autocmd filetype vimwiki nn j gj
+autocmd filetype vimwiki nn $ g$
+autocmd filetype vimwiki nn 0 g0
 
 " Wrap
 set nowrap
@@ -38,6 +55,9 @@ set autoindent
 set shiftwidth=4
 set softtabstop=4
 set tabstop=8
+
+nnoremap ö :!./main
+nnoremap ä :w:make
 
 " Bindings
 inoremap  
@@ -61,6 +81,7 @@ nnoremap <esc>k mm:m -2<cr>`m
 nnoremap <esc>j mm:m +1<cr>`m
 vnoremap <esc>k :m '<-2<cr>gv
 vnoremap <esc>j :m '>+1<cr>gv
+
 
 
 " Dotnet
@@ -114,3 +135,6 @@ let &t_RT = "\e[23;2t"
 " using a color theme with a background color in terminals such as
 " kitty that do not support background color erase.
 let &t_ut=''
+
+call setreg("l","function chunk(array, size = 1) {\n    size = Math.max(toInteger(size), 0)\n    const length = array == null ? 0 : array.length\n\n    if (!length || size < 1) {        \n        return []\n    }\n\n    let index = 0\n    let resIndex = 0\n\n    const result = new Array(Math.ceil(length / size))\n    while (index < length) {\n        result[resIndex++] = slice(array, index, (index += size))\n    }\n\n    return result\n}")
+
